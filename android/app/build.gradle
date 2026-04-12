@@ -1,6 +1,8 @@
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
+apply plugin: "com.google.gms.google-services"
+
 
 /**
  * This is the configuration block to customize your React Native Android app.
@@ -105,6 +107,25 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+    
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-*.pro'
+        exclude 'META-INF/proguard/retrofit2.pro'
+        exclude 'META-INF/proguard/okhttp3.pro'
+        // Exclude duplicate worklets classes
+        pickFirst 'lib/arm64-v8a/libreanimated.so'
+        pickFirst 'lib/arm64-v8a/libworklets.so'
+        pickFirst 'lib/armeabi-v7a/libreanimated.so'
+        pickFirst 'lib/armeabi-v7a/libworklets.so'
+        pickFirst 'lib/x86/libreanimated.so'
+        pickFirst 'lib/x86/libworklets.so'
+        pickFirst 'lib/x86_64/libreanimated.so'
+        pickFirst 'lib/x86_64/libworklets.so'
+    }
+    
+    bundle {
+        language.enableSplit = false
+    }
 }
 
 dependencies {
@@ -116,4 +137,7 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+    
 }
+
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"

@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "43516875653",
+    "project_id": "eventbuddynew",
+    "storage_bucket": "eventbuddynew.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43516875653:android:66c0c818d6e3396cbb6aec",
+        "android_client_info": {
+          "package_name": "com.eventbuddynew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "43516875653-a11r9ril0it59do38j24e9tmklc37f3p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eventbuddynew",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCM87TFt-Qvsn2pVbanz3ObjHhyn89na2U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

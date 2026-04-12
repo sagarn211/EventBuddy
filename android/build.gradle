@@ -1,10 +1,10 @@
 buildscript {
     ext {
-        buildToolsVersion = "36.0.0"
+        buildToolsVersion = "35.0.0"
         minSdkVersion = 24
-        compileSdkVersion = 36
-        targetSdkVersion = 36
-        ndkVersion = "27.1.12297006"
+        compileSdkVersion = 35
+        targetSdkVersion = 35
+        ndkVersion = "27.0.12077973"
         kotlinVersion = "2.1.20"
     }
     repositories {
@@ -15,7 +15,21 @@ buildscript {
         classpath("com.android.tools.build:gradle")
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+        classpath("com.google.gms:google-services:4.4.2")
     }
 }
 
 apply plugin: "com.facebook.react.rootproject"
+
+// Handle duplicate classes from worklets in react-native-reanimated
+allprojects {
+    configurations.all {
+        resolutionStrategy {
+            // Force a single version of react-native-worklets-core
+            preferProjectModules()
+            // Force compatible core versions for SDK 35
+            force 'androidx.core:core:1.13.0'
+            force 'androidx.core:core-ktx:1.13.0'
+        }
+    }
+}

@@ -1,4 +1,8 @@
 const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
+const { withNativeWind } = require('nativewind/metro');
+
+// This forces NativeWind to skip any Expo-related configuration checks
+process.env.NATIVEWIND_PLATFORM = "native";
 
 /**
  * Metro configuration
@@ -8,4 +12,10 @@ const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
  */
 const config = {};
 
-module.exports = mergeConfig(getDefaultConfig(__dirname), config);
+const mergedConfig = mergeConfig(getDefaultConfig(__dirname), config);
+
+module.exports = withNativeWind(mergedConfig, {
+  input: './global.css',
+  inlineRem: 16,
+});
+

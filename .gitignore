@@ -45,8 +45,21 @@ yarn-error.log
 
 # Environment variables
 .env
+.env.local
+.env.*.local
+# Ignore .env.* except .env.example
 .env.*
-*.env
+!.env.example
+
+# Configuration & Credentials
+# Firebase
+Backend/config/firebase-service-account.json
+# ImageKit
+Backend/config/imagekit.config.js
+# Other sensitive configs
+Backend/config/*.json
+!Backend/config/*.example.json
+Backend/config/*.example.js
 
 # fastlane
 #

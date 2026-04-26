@@ -8,13 +8,14 @@ import React, { useState, useCallback } from "react";
 import {
   View,
   Text,
-  ScrollView,
+  
   TouchableOpacity,
   Image,
   Dimensions,
   Platform,
   Share,
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import LinearGradient from "react-native-linear-gradient";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";

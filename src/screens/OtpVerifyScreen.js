@@ -8,8 +8,9 @@ import {
   KeyboardAvoidingView,
   Platform,
   Alert,
-  ScrollView,
+  
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { firebaseLogin } from "../api/authService";
@@ -75,7 +76,8 @@ export default function OtpVerifyScreen({ route, navigation }) {
   return (
     <AnimatedBackground>
       <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
         className="flex-1"
       >
         <ScrollView 

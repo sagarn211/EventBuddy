@@ -4,12 +4,13 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  ScrollView,
+  
   Image,
   SafeAreaView,
   ActivityIndicator,
   Modal,
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import LinearGradient from "react-native-linear-gradient";

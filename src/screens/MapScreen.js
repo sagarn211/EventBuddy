@@ -4,7 +4,7 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ScrollView,
+  
   Image,
   TextInput,
   SafeAreaView,
@@ -15,6 +15,7 @@ import {
   RefreshControl,
   Alert,
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import LinearGradient from "react-native-linear-gradient";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Animated, { 

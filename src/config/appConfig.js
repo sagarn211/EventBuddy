@@ -2,17 +2,8 @@ import { Platform } from "react-native";
 
 let apiUrl;
 
-// Configure API URL based on platform and environment
-if (Platform.OS === "android") {
-  // Android emulator: use 10.0.2.2 to reach localhost
-  apiUrl = "http://10.0.2.2:4005";
-} else if (Platform.OS === "ios") {
-  // iOS simulator: use localhost directly
-  apiUrl = "http://localhost:4005";
-} else {
-  // Web or other platforms
-  apiUrl = "http://localhost:4005";
-}
+// Deployed backend (Render)
+apiUrl = "https://eventbuddy-ke1s.onrender.com";
 
 // Override with environment variable if set
 if (process.env.REACT_APP_API_URL) {

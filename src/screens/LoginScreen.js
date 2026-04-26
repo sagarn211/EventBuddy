@@ -7,10 +7,11 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
-  ScrollView,
+  
   Alert,
   ActivityIndicator,
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import auth from "@react-native-firebase/auth";
@@ -119,7 +120,8 @@ export default function LoginScreen({ navigation }) {
   return (
     <AnimatedBackground>
       <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
         className="flex-1"
       >
         <ScrollView 

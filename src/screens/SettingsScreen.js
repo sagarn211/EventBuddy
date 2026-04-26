@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ScrollView,
   Image,
   SafeAreaView,
   Platform,
@@ -11,6 +10,7 @@ import {
   Switch,
   Modal
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import LinearGradient from "react-native-linear-gradient";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
@@ -295,17 +295,15 @@ export default function SettingsScreen({ navigation }) {
             </View>
 
             {/* Settings List */}
-            <View style={{ gap: 10, pointerEvents: 'auto' }}>
+            <View style={{ gap: 10 }}>
               {SETTINGS_OPTIONS.map((item, index) => (
                 <Animated.View
                   key={item.id}
                   entering={FadeInDown.delay(200 + index * 80).duration(500)}
-                  style={{ pointerEvents: 'auto' }}
                 >
                   <TouchableOpacity
                     activeOpacity={0.75}
                     onPress={() => { handleSettingPress(item.id); }}
-                    style={{ pointerEvents: 'auto' }}
                   >
                     <View style={{ backgroundColor: '#111827', borderRadius: 20, borderWidth: 1, borderColor: '#1f2937', flexDirection: 'row', alignItems: 'center', padding: 16 }}>
                       {/* Left accent bar */}
@@ -336,11 +334,11 @@ export default function SettingsScreen({ navigation }) {
             </View>
 
             {/* Logout */}
-            <Animated.View entering={FadeInUp.delay(700)} style={{ marginTop: 32, pointerEvents: 'auto' }}>
+            <Animated.View entering={FadeInUp.delay(700)} style={{ marginTop: 32 }}>
               <TouchableOpacity
                 onPress={handleLogout}
                 activeOpacity={0.75}
-                style={{ pointerEvents: 'auto', backgroundColor: '#1f1520', borderRadius: 20, borderWidth: 1, borderColor: '#7f1d1d' + '55', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingVertical: 18, gap: 10 }}
+                style={{ backgroundColor: '#1f1520', borderRadius: 20, borderWidth: 1, borderColor: '#7f1d1d' + '55', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingVertical: 18, gap: 10 }}
               >
                 <Ionicons name="log-out-outline" size={20} color="#f43f5e" />
                 <Text style={{ color: '#f43f5e', fontWeight: '800', fontSize: 14, letterSpacing: 2, textTransform: 'uppercase' }}>Sign Out</Text>
@@ -394,7 +392,7 @@ export default function SettingsScreen({ navigation }) {
                       setShowQRModal(false);
                     }}
                     activeOpacity={0.7}
-                    style={{ pointerEvents: 'auto', flex: 1, paddingVertical: 12, backgroundColor: '#4f46e5', borderRadius: 14, alignItems: 'center', justifyContent: 'center' }}
+                    style={{ flex: 1, paddingVertical: 12, backgroundColor: '#4f46e5', borderRadius: 14, alignItems: 'center', justifyContent: 'center' }}
                   >
                     <Text className="text-white font-bold">Copy</Text>
                   </TouchableOpacity>
@@ -406,7 +404,7 @@ export default function SettingsScreen({ navigation }) {
                       setShowQRModal(false);
                     }}
                     activeOpacity={0.7}
-                    style={{ pointerEvents: 'auto', flex: 1, paddingVertical: 12, backgroundColor: '#0891b2', borderRadius: 14, alignItems: 'center', justifyContent: 'center' }}
+                    style={{ flex: 1, paddingVertical: 12, backgroundColor: '#0891b2', borderRadius: 14, alignItems: 'center', justifyContent: 'center' }}
                   >
                     <Text className="text-white font-bold">Save</Text>
                   </TouchableOpacity>
@@ -418,7 +416,6 @@ export default function SettingsScreen({ navigation }) {
                     setShowQRModal(false);
                   }}
                   activeOpacity={0.7}
-                  style={{ pointerEvents: 'auto' }}
                   className="mt-4 w-full py-3 bg-white/5 rounded-xl items-center justify-center"
                 >
                   <Text className="text-gray-300 font-semibold">Close</Text>

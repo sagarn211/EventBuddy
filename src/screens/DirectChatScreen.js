@@ -7,7 +7,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  ScrollView,
+  
   Image,
   KeyboardAvoidingView,
   Platform,
@@ -22,6 +22,7 @@ import {
   Keyboard,
   Linking,
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import ImagePicker from 'react-native-image-crop-picker';
 import LinearGradient from "react-native-linear-gradient";
 import Ionicons from "react-native-vector-icons/Ionicons";

@@ -4,13 +4,14 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  ScrollView,
+  
   KeyboardAvoidingView,
   Platform,
   Alert,
   ActivityIndicator,
   Dimensions,
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import LinearGradient from "react-native-linear-gradient";
 import Ionicons from "react-native-vector-icons/Ionicons";

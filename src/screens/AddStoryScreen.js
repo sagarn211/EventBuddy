@@ -3,7 +3,7 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ScrollView,
+  
   Image,
   SafeAreaView,
   TextInput,
@@ -13,6 +13,7 @@ import {
   PermissionsAndroid,
   Alert,
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Animated, { FadeInDown } from "react-native-reanimated";

@@ -4,7 +4,7 @@ import { getPlans, joinPlan } from "../api/planService";
 import {
   View,
   Text,
-  ScrollView,
+  
   TouchableOpacity,
   Image,
   SafeAreaView,
@@ -13,6 +13,7 @@ import {
   Modal,
   Share,
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";

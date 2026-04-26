@@ -5,12 +5,13 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ScrollView,
+  
   Image,
   SafeAreaView,
   Platform,
   ActivityIndicator
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import LinearGradient from "react-native-linear-gradient";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";

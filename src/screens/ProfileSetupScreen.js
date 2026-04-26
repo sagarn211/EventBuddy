@@ -4,13 +4,14 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  ScrollView,
+  
   Image,
   KeyboardAvoidingView,
   Platform,
   Alert,
   ActivityIndicator,
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import Animated, { FadeInDown, FadeInUp, Layout } from "react-native-reanimated";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";

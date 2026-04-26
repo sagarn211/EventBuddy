@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, ScrollView, Image, SafeAreaView, Platform, ActivityIndicator } from "react-native";
+import { View, Text, TouchableOpacity,  Image, SafeAreaView, Platform, ActivityIndicator } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { useAuth } from "../context/AuthContext";
 import { getUserBadges } from "../api/badgeService";
 import { getUserRating } from "../api/reviewService";

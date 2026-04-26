@@ -3,7 +3,6 @@ import { useFocusEffect } from "@react-navigation/native";
 import {
   View,
   Text,
-  ScrollView,
   TouchableOpacity,
   ActivityIndicator,
   RefreshControl,
@@ -13,6 +12,7 @@ import {
   FlatList,
   Alert,
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 
 import LinearGradient from "react-native-linear-gradient";
 import Ionicons from "react-native-vector-icons/Ionicons";

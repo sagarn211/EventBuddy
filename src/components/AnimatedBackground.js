@@ -57,6 +57,7 @@ const Particle = ({ delay, duration, startPos }) => {
         { left: startPos.x, top: startPos.y },
         animatedStyle,
       ]}
+      pointerEvents="none"
     />
   );
 };
@@ -102,12 +103,15 @@ const AnimatedBackground = ({ children }) => {
       {/* Atmospheric Blobs (Muted Indigo & Charcoal for Luxury Feel) */}
       <Animated.View
         style={[styles.blob, styles.blobIndigo, blob1Style, { top: "10%", left: "-10%" }]}
+        pointerEvents="none"
       />
       <Animated.View
         style={[styles.blob, styles.blobCharcoal, blob2Style, { bottom: "15%", right: "-5%" }]}
+        pointerEvents="none"
       />
       <Animated.View
         style={[styles.blob, styles.blobMidnight, { top: "40%", right: "15%", opacity: 0.1 }]}
+        pointerEvents="none"
       />
 
       {/* Subtle Particles */}

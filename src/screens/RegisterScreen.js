@@ -6,9 +6,10 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
-  ScrollView,
+  
   Alert,
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import { register } from "../api/authService";

@@ -88,12 +88,11 @@ export default function LoginScreen({ navigation }) {
       navigation.navigate("OtpVerify", { phone });
     } catch (error) {
       clearTimeout(timeoutId);
-      console.error("[OTP] Send Error - Full error object:", JSON.stringify({
+      console.error("[OTP] Send Error:", {
         code: error.code,
         message: error.message,
         nativeErrorMessage: error.nativeErrorMessage,
-        userInfo: error.userInfo,
-      }, null, 2));
+      });
       
       let errorMessage = error.message || "Failed to send OTP. Please try again.";
       

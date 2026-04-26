@@ -13,12 +13,29 @@ if (fs.existsSync(serviceAccountPath)) {
             credential: admin.credential.cert(serviceAccount)
         });
         isInitialized = true;
-        console.log("[FCM] Firebase Admin initialized successfully.");
+        console.log("[FCM] Firebase Admin initialized using JSON file.");
     } catch (err) {
-        console.error("[FCM] Error initializing Firebase Admin:", err);
+        console.error("[FCM] Error initializing Firebase Admin from JSON:", err);
+    }
+} else if (process.env.FIREBASE_PRIVATE_KEY && process.env.FIREBASE_CLIENT_EMAIL) {
+    try {
+        // Fix for private key newlines in .env
+        const privateKey = process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n').replace(/"/g, '').replace(/,$/, '').trim();
+        
+        admin.initializeApp({
+            credential: admin.credential.cert({
+                projectId: process.env.FIREBASE_PROJECT_ID,
+                clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+                privateKey: privateKey,
+            })
+        });
+        isInitialized = true;
+        console.log("[FCM] Firebase Admin initialized using environment variables.");
+    } catch (err) {
+        console.error("[FCM] Error initializing Firebase Admin from ENV:", err);
     }
 } else {
-    console.warn("[FCM] firebase-service-account.json not found in config. Push notifications will be disabled.");
+    console.warn("[FCM] Firebase credentials missing (no JSON file or ENV variables found). Auth will fail.");
 }
 
 /**

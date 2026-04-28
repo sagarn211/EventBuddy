@@ -163,6 +163,19 @@ export default function CreatePlanScreen({ navigation }) {
     setShowDatePicker(true);
   };
 
+  const ensureValidEndTime = (maybeStart, maybeEnd) => {
+    const start = maybeStart instanceof Date ? maybeStart : new Date(maybeStart);
+    const end = maybeEnd instanceof Date ? maybeEnd : new Date(maybeEnd);
+    if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return end;
+
+    // Keep a minimum 60 min duration by default.
+    const minDurationMs = 60 * 60 * 1000;
+    if (end.getTime() <= start.getTime()) {
+      return new Date(start.getTime() + minDurationMs);
+    }
+    return end;
+  };
+
   const onDateChange = (event, selectedDate) => {
     setShowDatePicker(Platform.OS === "ios");
     if (selectedDate) {
@@ -170,14 +183,16 @@ export default function CreatePlanScreen({ navigation }) {
         const newStartDateTime = new Date(selectedDate);
         newStartDateTime.setHours(startDateTime.getHours(), startDateTime.getMinutes());
         setStartDateTime(newStartDateTime);
+        setEndDateTime((prevEnd) => ensureValidEndTime(newStartDateTime, prevEnd));
       } else if (datePickerType === "startTime") {
         const newStartDateTime = new Date(startDateTime);
         newStartDateTime.setHours(selectedDate.getHours(), selectedDate.getMinutes());
         setStartDateTime(newStartDateTime);
+        setEndDateTime((prevEnd) => ensureValidEndTime(newStartDateTime, prevEnd));
       } else if (datePickerType === "endTime") {
         const newEndDateTime = new Date(endDateTime);
         newEndDateTime.setHours(selectedDate.getHours(), selectedDate.getMinutes());
-        setEndDateTime(newEndDateTime);
+        setEndDateTime(ensureValidEndTime(startDateTime, newEndDateTime));
       }
     }
   };

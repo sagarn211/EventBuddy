@@ -499,7 +499,7 @@ export default function PlanDetailScreen({ route, navigation }) {
       {/* Floating CTA Footer (Outside ScrollView) */}
       <Animated.View entering={FadeInUp.delay(400)} className="absolute bottom-0 w-full pt-4 px-6 bg-gradient-to-t from-[#111114] via-[#111114] to-[#111114]/80 border-t border-white/5" style={{ paddingBottom: Platform.OS === 'ios' ? 34 : 24, paddingTop: 24, minHeight: 180 }}>
         {/* Host Controls - Show when user is host */}
-        {isHost && (
+        {isHost && currentPlan.status !== 'ended' && currentPlan.status !== 'completed' && (
           <View className="mb-4">
             <TouchableOpacity
               onPress={handleEndEvent}

@@ -18,10 +18,18 @@ module.exports.createPlan = async (req, res) => {
 
 module.exports.getPlans = async (req, res) => {
     try {
-        const { category } = req.query;
+        const { category, status } = req.query;
         const filters = {};
         if (category && category !== "all") {
             filters.category = category;
+        }
+
+        // By default, only show active plans in feeds.
+        // Allow overriding via `?status=all` or a specific status value.
+        if (!status || status === "active") {
+            filters.status = "active";
+        } else if (status !== "all") {
+            filters.status = status;
         }
         const plans = await planService.getPlans(filters);
         res.status(200).json({ success: true, data: plans });

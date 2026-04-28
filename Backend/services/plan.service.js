@@ -16,6 +16,20 @@ module.exports.createPlan = async (data) => {
         planData.dateTime = planData.startDateTime;
     }
 
+    // Normalize GeoJSON coordinate order to [lng, lat].
+    // Some clients accidentally send [lat, lng], which breaks the 2dsphere index.
+    const coords = planData?.location?.coordinates;
+    if (Array.isArray(coords) && coords.length >= 2) {
+        const a = Number(coords[0]);
+        const b = Number(coords[1]);
+        if (Number.isFinite(a) && Number.isFinite(b)) {
+            const looksLikeLatLng = Math.abs(a) <= 90 && Math.abs(b) > 90;
+            if (looksLikeLatLng) {
+                planData.location.coordinates = [b, a];
+            }
+        }
+    }
+
     const plan = await planModel.create({
         ...planData,
         createdBy: userId,

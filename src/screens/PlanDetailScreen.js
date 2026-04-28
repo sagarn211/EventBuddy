@@ -130,6 +130,10 @@ export default function PlanDetailScreen({ route, navigation }) {
 
   const handleJoin = async () => {
     if (hasJoined || isHost) return;
+    if (currentPlan.status === "ended" || currentPlan.status === "completed") {
+      Alert.alert("Event Ended", "This event has already ended.");
+      return;
+    }
     try {
       setLoading(true);
       await joinPlan(plan._id);
@@ -211,7 +215,9 @@ export default function PlanDetailScreen({ route, navigation }) {
             try {
               setIsEnding(true);
               await endPlan(plan._id);
-              
+              setCurrentPlan(prev => ({ ...(prev || {}), status: "ended" }));
+              fetchPlanDetails().catch(() => {});
+               
               if (isReviewable) {
                 // If event was long enough, show participant review list instead of just closing
                 const participantsToReview = currentPlan.participants.filter(p => (p._id || p) !== user?._id);
@@ -556,9 +562,9 @@ export default function PlanDetailScreen({ route, navigation }) {
         <View className="flex-row gap-3 items-center justify-center">
           <TouchableOpacity 
             onPress={handleJoin}
-            disabled={loading || hasJoined || isHost || spotsLeft === 0}
+            disabled={loading || hasJoined || isHost || spotsLeft === 0 || currentPlan.status === 'ended' || currentPlan.status === 'completed'}
             activeOpacity={0.9} 
-            className={`flex-1 border border-pink-500/20 shadow-xl ${(hasJoined || isHost || spotsLeft === 0) ? 'opacity-50' : ''}`} 
+            className={`flex-1 border border-pink-500/20 shadow-xl ${(hasJoined || isHost || spotsLeft === 0 || currentPlan.status === 'ended' || currentPlan.status === 'completed') ? 'opacity-50' : ''}`} 
             style={{ 
               borderRadius: 20, 
               overflow: 'hidden',
@@ -569,7 +575,7 @@ export default function PlanDetailScreen({ route, navigation }) {
               shadowRadius: 12,
             }}>
             <LinearGradient
-              colors={hasJoined || isHost ? ['#1f2937', '#0f172a'] : ['#6366f1', '#4338ca']}
+              colors={hasJoined || isHost || currentPlan.status === 'ended' || currentPlan.status === 'completed' ? ['#1f2937', '#0f172a'] : ['#6366f1', '#4338ca']}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={{ height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', borderRadius: 24 }}
@@ -579,7 +585,15 @@ export default function PlanDetailScreen({ route, navigation }) {
               ) : (
                 <>
                   <Text className="text-white text-[15px] font-bold tracking-[2px] uppercase">
-                    {isHost ? "Principal Host" : hasJoined ? "Already Joined" : spotsLeft === 0 ? "Fully Booked" : "Secure My Spot"}
+                    {isHost
+                      ? "Principal Host"
+                      : currentPlan.status === 'ended' || currentPlan.status === 'completed'
+                        ? "Event Ended"
+                        : hasJoined
+                          ? "Already Joined"
+                          : spotsLeft === 0
+                            ? "Fully Booked"
+                            : "Secure My Spot"}
                   </Text>
                 </>
               )}

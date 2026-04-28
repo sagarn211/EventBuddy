@@ -71,6 +71,10 @@ module.exports.joinPlan = async (planId, userId) => {
         throw new Error("Plan not found");
     }
 
+    if (plan.status === "ended" || plan.status === "completed") {
+        throw new Error("This event has ended");
+    }
+
     if(!plan.participants.includes(userId)) {
         plan.participants.push(userId);
         await plan.save();

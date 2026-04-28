@@ -131,11 +131,14 @@ export default function CreatePlanScreen({ navigation }) {
         title,
         description,
         category,
+        // Backend schema requires `dateTime`; treat it as the plan start time.
+        dateTime: startDateTime,
         startDateTime,
         endDateTime,
         location: {
           address,
-          coordinates: [mockLat, mockLng],
+          // GeoJSON coordinates are [lng, lat]
+          coordinates: [mockLng, mockLat],
         },
         maxPeople: parseInt(maxPeople),
         isOfficial: isOrganiser ? isOfficial : false,

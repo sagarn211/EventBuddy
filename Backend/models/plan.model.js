@@ -13,7 +13,24 @@ const planSchema = new mongoose.Schema(
 
         category: {
             type: String,
-            enum: ["movie", "cafe", "sports", "study", "other", "event", "gaming", "food"],
+            // Keep this in sync with client category ids; accept common legacy variants too.
+            enum: [
+                "movie",
+                "cafe",
+                "event",
+                "gaming",
+                "food",
+                "sports",
+                "sport",
+                "study",
+                "other",
+                "livemusic",
+                "foodcrawl",
+                "fitness",
+                "social",
+                "art",
+                "outdoor",
+            ],
             required: true,
         },
 

@@ -7,6 +7,15 @@ module.exports.createPlan = async (data) => {
     if (!userId) {
         throw new Error("User ID is required");
     }
+
+    // Backward/forward compatibility:
+    // - Older clients send only `dateTime`
+    // - Newer clients may send `startDateTime`/`endDateTime`
+    // The schema requires `dateTime`, so derive it from `startDateTime` when missing.
+    if (!planData.dateTime && planData.startDateTime) {
+        planData.dateTime = planData.startDateTime;
+    }
+
     const plan = await planModel.create({
         ...planData,
         createdBy: userId,
